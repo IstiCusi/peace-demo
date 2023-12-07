@@ -24,7 +24,7 @@ Compile the demo using `make`
 
 ## Contributing
 
-Welcome contributions and explain how others can contribute to the project.
+Any contribution is welcome!
 
 ## License
 
