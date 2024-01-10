@@ -31,3 +31,10 @@ Any contribution is welcome!
 This project is open-source and is licensed under the MIT License. Please see the 
 [LICENSE](LICENSE.md) file for detailed licensing information.
 
+
+## TODOS
+
+- Complete API documention 
+- Reason for low performance on windows (probably SDL2 intrinsic)
+- Check complexity measures / check with SDL2 devs
+
