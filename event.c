@@ -4,7 +4,9 @@
 bool is_game_over(void) {
 
   SDL_Event event;
-  bool over = false; while (SDL_PollEvent(&event)) {
+  bool over = false; 
+  
+  while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
         over = true;
