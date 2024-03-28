@@ -18,8 +18,8 @@ int main() {
     printf("%3d -- %3p - %s\n", 0, buffer, buffer);
     
     for (int i = 1 ; i < 80 ; i++) {
-	carry = SC_roll(&buffer, false);
-	printf("%3d -- %3p - %c - %s\n", i, buffer, carry, buffer);
+      carry = SC_roll(&buffer, false);
+      printf("%3d -- %3p - %c - %s\n", i, buffer, carry, buffer);
     }
 
     SC_free();

@@ -39,6 +39,24 @@ WindowInfo createWindow(float winscale) {
   const int scaled_w = scale_factor * mode.w;
   const int scaled_h = scale_factor * mode.h;
 
+  // WindowInfo winfo = {
+  //   .winscale = winscale,
+  //   .rpos_scroller = 0.67,  // originally 0.55
+  //   .rpos_mirror   = 0.79,  // originally 0.73
+  //   .rpos_water    = 0.75,
+  //   .rpos_title = 0.20,
+  //   .window_width = scaled_w,
+  //   .window_height = scaled_h,
+  //   .borderthickness = 200 * scaled_h / 1280,
+  //   .fontsize = 300 * scaled_h / 1280,
+  //   .window = SDL_CreateWindow("Demo",
+  //                              (mode.w - scaled_w) / 2,
+  //                              (mode.h - scaled_h) / 2,
+  //                              scaled_w,
+  //                              scaled_h,
+  //                              SDL_WINDOW_INPUT_FOCUS),
+  // };
+
   WindowInfo winfo = {
     .winscale = winscale,
     .rpos_scroller = 0.67,  // originally 0.55
@@ -50,13 +68,12 @@ WindowInfo createWindow(float winscale) {
     .borderthickness = 200 * scaled_h / 1280,
     .fontsize = 300 * scaled_h / 1280,
     .window = SDL_CreateWindow("Demo",
-                               (mode.w - scaled_w) / 2,
-                               (mode.h - scaled_h) / 2,
+                               SDL_WINDOWPOS_CENTERED,
+                               SDL_WINDOWPOS_CENTERED,
                                scaled_w,
                                scaled_h,
                                SDL_WINDOW_INPUT_FOCUS),
   };
-
   if (winfo.window == NULL) {
     fprintf(stderr, "Failed to create window: %s\n", SDL_GetError());
     exit(EXIT_FAILURE);
