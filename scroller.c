@@ -17,15 +17,7 @@ static int counter;
 
 // ----------- Implementation of the fast light weight ring puffer  -----------
 
-/**
- * @brief Initializes the scroller with the given text and width.
- *
- * @param text The text to be scrolled.
- * @param width The width of the scrolling area.
- * @param buf A pointer to a pointer where the initial buffer will be stored.
- * @return Returns 0 on success, -1 if the length of text is less than or equal to width.
- */
-int SC_init (const char *text, size_t width, char **buf) {
+int SC_init (const char * const __restrict text, size_t width, char ** __restrict buf) {
 
   if (strlen(text) <= width) return -1; // Nothing to scroll
 
@@ -51,14 +43,8 @@ int SC_init (const char *text, size_t width, char **buf) {
   return 0;
 }
 
-/**
- * @brief Rolls the scroller one character to the left or right.
- *
- * @param buf A pointer to a pointer where the updated buffer will be stored.
- * @param former Indicates whether to roll to the left (true) or right (false).
- * @return Returns the character that was rolled off.
- */
-char SC_roll(char **buf, bool former) {
+
+char SC_roll(char ** __restrict buf, bool former) {
 
   counter = counter % size;
   *head_ref = character_buffer;
@@ -86,6 +72,7 @@ char SC_roll(char **buf, bool former) {
  * @return Returns 0 on success.
  */
 int SC_free(void) {
+
   free(internal_buffer);
   internal_buffer = NULL;
   return 0;
@@ -99,7 +86,8 @@ int SC_free(void) {
  * @return Returns 0 on success.
  */
 
-int portable_fopen(FILE** f, const char* filename, const char* mode) {
+// int portable_fopen(FILE** f, const char* filename, const char* mode) {
+int portable_fopen(FILE** __restrict f, const char* const __restrict filename, const char* const __restrict mode) {
 #ifdef _MSC_VER
     return fopen_s(f, filename, mode);  
 #else
@@ -108,7 +96,8 @@ int portable_fopen(FILE** f, const char* filename, const char* mode) {
 #endif
 }
 
-size_t SC_read(const char* filename, char** buffer) {
+// size_t SC_read(const char* filename, char** buffer) {
+size_t SC_read(const char* const __restrict filename, char** __restrict buffer) {
     FILE* stream = NULL;
     if (portable_fopen(&stream, filename, "rb") != 0 || stream == NULL) {
         return -1; 

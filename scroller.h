@@ -18,7 +18,9 @@
  * 
  * @return Returns an integer status code (0 for success, non-zero for error).
  */
-int SC_init(const char *text, size_t width, char **buf);
+// int SC_init(const char *text, size_t width, char **buf);
+int SC_init(const char * const __restrict text, size_t width, char ** __restrict buf);
+
 
 /**
  * @brief Rolls the text one character to the left.
@@ -33,7 +35,8 @@ int SC_init(const char *text, size_t width, char **buf);
  *
  * @return Returns the character according to the `former` parameter.
  */
-char SC_roll(char **buffer, bool former);
+// char SC_roll(char **buffer, bool former);
+char SC_roll(char ** __restrict buf, bool former);
 
 /**
  * @brief Opens a file in a portable manner.
@@ -59,7 +62,8 @@ int portable_fopen(FILE** f, const char* filename, const char* mode);
  *
  * @return Returns the size of the read data.
  */
-size_t SC_read(const char *filename, char  **buffer);
+// size_t SC_read(const char *filename, char  **buffer);
+size_t SC_read(const char* const __restrict filename, char** __restrict buffer);
 
 /**
  * @brief Resets the Scroller to show the result after SC_init.
