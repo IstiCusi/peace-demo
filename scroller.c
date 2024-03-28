@@ -32,12 +32,8 @@ int SC_init (const char *text, size_t width, char **buf) {
   counter = 0 ;
   stored_width = width;
 
-  size = strlen(text);
-
-  internal_buffer = malloc( 2 * size );
-  if (internal_buffer == NULL) {
-    return -1;  // Memory allocation failed
-  }
+  size = strlen(text); internal_buffer = malloc( 2 * size ); 
+  if (internal_buffer == NULL) return -1; 
 
   memset(internal_buffer, 32, 2 * size );
 
@@ -105,42 +101,38 @@ int SC_free(void) {
 
 int portable_fopen(FILE** f, const char* filename, const char* mode) {
 #ifdef _MSC_VER
-    return fopen_s(f, filename, mode);  // Für MSVC, verwenden Sie fopen_s
+    return fopen_s(f, filename, mode);  
 #else
-    * f = fopen(filename, mode);         // Für andere Compiler, verwenden Sie fopen
+    * f = fopen(filename, mode);
     return *f != NULL ? 0 : 1;
 #endif
 }
 
 size_t SC_read(const char* filename, char** buffer) {
     FILE* stream = NULL;
-    // Verwende die portable_fopen-Funktion
     if (portable_fopen(&stream, filename, "rb") != 0 || stream == NULL) {
-        return -1; // Fehler beim Öffnen der Datei
+        return -1; 
     }
 
-    // Gehe ans Ende der Datei, um die Größe zu bestimmen
     fseek(stream, 0L, SEEK_END);
     size_t size = ftell(stream);
     fseek(stream, 0L, SEEK_SET);
 
-    // Reserviere Speicher für den Inhalt der Datei plus das Nullzeichen
     *buffer = malloc((size + 1) * sizeof(char));
     if (*buffer == NULL) {
         fclose(stream);
-        return -1; // Fehler bei der Speicherreservierung
+        return -1; 
     }
 
-    char* ptr = *buffer; // Zeiger auf die aktuelle Position im Puffer
-    int ch; // Variable zum Speichern des gelesenen Zeichens
+    char* ptr = *buffer; 
+    int ch; 
     while ((ch = fgetc(stream)) != EOF) {
-        // Überspringe Nullzeichen und Zeilenumbrüche
         if (ch != '\0' && ch != '\n' && ch != '\r') {
-            *ptr++ = ch; // Füge das Zeichen zum Puffer hinzu und bewege den Zeiger
+            *ptr++ = ch; 
         }
     }
-    *ptr = '\0'; // Füge das abschließende Nullzeichen hinzu
+    *ptr = '\0'; 
 
     fclose(stream);
-    return 0; // Erfolg
+    return 0; 
 }
