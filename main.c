@@ -20,7 +20,6 @@
 #include "event.h"
 #include "window.h"
 #include "scroller.h"
-#include "charoffset.h"
 #include "sdl_scroller.h"
 #include "water.h"
 #include "frame.h"

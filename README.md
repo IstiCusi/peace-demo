@@ -2,7 +2,10 @@
 
 ## Description
 
-This is a Scroller Demo inspired by the 80s and 90s style of the C64, but implemented using the SDL library in C. 
+This is a Scroller Demo inspired by the 80s and 90s style of the C64, but implemented using the SDL library in C.
+
+[![Demo Video](https://img.youtube.com/vi/aFnnTTyZzj8/0.jpg)](https://www.youtube.com/watch?v=aFnnTTyZzj8)
+
 At the moment, the demo can be compiled on Linux machines using `make`. Windows Microsoft Visual Studio integration
 is still experimental. Feel free to go further in this direction. The demo relies on the following SDL2 libraries:
 
